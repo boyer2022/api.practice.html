@@ -24,15 +24,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
-  height: 400px;
-  width: 300px;
+  margin: 100px;
+  height: 600px;
+  width: 600px;
 }
 
 .result img {
   object-fit: cover;
-  align-items: center;
-  justify-content: center;
+  align-items: 50%;
+  justify-content: 20%;
 }
 
 .buttons {
