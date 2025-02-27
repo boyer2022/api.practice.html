@@ -1,18 +1,61 @@
+<!-- API Practice App by Matt Boyer February 2025
+ Based on YouTube video  https://www.youtube.com/watch?v=7f2HNadULOs 
+ gitHub Random Cat API not in service during creation of this app
+ so I decided to use Random Fox https://randomfox.ca/floof/ images instead -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>API Practice</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
   </head>
   <body>
     <div class="results">
-      <div class="results">
-        <p>Random Cat Placeholder</p>
+      <div id="fox_result" class="picture">
+        <p>Random Fox Placeholder</p>
       </div>
-      <div class="result">
+      <div id="dog_result" class="picture">
         <p>Random Dog Placeholder</p>
       </div>
     </div>
+
+    <div class="buttons">
+      <button id="fox_btn">Get Fox</button>
+      <button id="dog_btn">Get Dog</button>
+    </div>
+    <script>
+      const fox_result = document.getElementById("fox_result");
+      const dog_result = document.getElementById("dog_result");
+      const fox_btn = document.getElementById("fox_btn");
+      const dog_btn = document.getElementById("dog_btn");
+
+      fox_btn.addEventListener("click", getRandomFox);
+      dog_btn.addEventListener("click", getRandomDog);
+
+      function getRandomFox() {
+        fetch("https://randomfox.ca/floof/")
+          .then((res) => res.json())
+          .then((data) => {
+            fox_result.innerHTML = `<img src="${data.image}"/>`;
+          });
+      }
+
+      function getRandomDog() {
+        fetch("https://random.dog/woof.json")
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.url.includes(".mp4")) {
+              getRandomDog();
+            } else if (data.url.fileSizeBytes > 20085) {
+              getRandomDog();
+            } else if (data.url.includes(".gif")) {
+              getRandomDog();
+            } else {
+              dog_result.innerHTML = `<img src="${data.url}"/>`;
+            }
+          });
+      }
+    </script>
   </body>
 </html>
