@@ -35,6 +35,12 @@ body {
   justify-content: 20%;
 }
 
+.result url {
+  object-fit: cover;
+  align-items: 50%;
+  justify-content: 20%;
+}
+
 .buttons {
   display: flex;
   align-items: center;
